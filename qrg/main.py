@@ -2,11 +2,26 @@
 #                                   QRGPy
 #==============================================================================#
 #Generate a Quasi-Regular Grid for any d-dimensional system of interest.
+#Testing with specific functions, will generalize after
 #==============================================================================#
-def P_i():
+import numpy as np
+#==============================================================================#
+def P_i(d,x_i,V_i):
 #Target distribution function
-#In general and d-dimensional system should be allowed
+#In general and d-dimensional system should be allowed, begin by defining sys.
     pass
+
+def Morse(omegas,D_morse,x_i):
+#Potential Energy: Sum of 1D Morse potentials
+#==============================================================================#
+#d                ==>Coordinate dimensionality (x^i=x_1,x_2,...x_d)
+#x_i(d)           ==>i-th grid points coordinates (x^i=x_1,x_2,...x_d)
+#D_morse          ==>Parameter for Morse Potential
+#omegas(d)        ==>Parameter for Morse Potential
+#V_i              ==>Potential Energy evaluation V(x_i)
+#==============================================================================#
+    return D_morse*np.sum((np.exp(-omegas*x_i)-1.)**2 )
+
 
 def box_size_P():
 #compute the box for normalizing P
@@ -29,3 +44,19 @@ def Pseudo_Pairwise_Energy():
 def QR_Minimize():
 #Use the QR formalism to generate a QRG from the initial grid
     pass
+
+
+
+#==============================================================================#
+D_morse=12.
+omega_list=list()
+omega_list.append(3.)
+omega_list.append(4.)
+omegas=np.array(omega_list)
+
+x_list=list()
+x_list.append(1.)
+x_list.append(2.)
+x_i=np.array(x_list)
+
+print(Morse(omegas,D_morse,x_i))
